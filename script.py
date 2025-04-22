@@ -15,7 +15,7 @@ login_box = driver.find_element(By.XPATH,value='//*[@id="_full_container_header_
 login_box.click()
 
 login_btn = wait.until(
-    EC.visibility_of_element_located((By.CLASS_NAME, "my-account--signin--RiPQVPB"))
+    EC.visibility_of_element_located(driver.find_element())
 )
 #driver.find_element(By.CLASS_NAME, value="my-account--signin--RiPQVPB")
 login_btn.click()
