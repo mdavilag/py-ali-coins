@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 import time
 from notifications import notify
+from log import logging
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option("mobileEmulation", {
@@ -45,13 +46,16 @@ try:
     getCoins_btn.click()
     notify("Moedas recolhidas!!","Moedas recolhidas com sucesso!")
     print("-- Moedas recolhidas com sucesso")
+    logging.info("Moedas recolhiedas com sucesso - Notificacao enviada")
     
 except:
     if(EC.presence_of_element_located((By.CLASS_NAME,'aecoin-checked-3eXDN'))):
         print("-- Moedas já recolhidas hoje")
+        logging.info("Moedas já recolhidas hoje")
     else:
         print("-- Erro ao recolher moedas")
         notify("Error..","Erro ao tentar recolher moedas")
+        logging.error("Erro ao recolher moedas")
     time.sleep(2)
     print("-- Encerrando script")
 time.sleep(10)
