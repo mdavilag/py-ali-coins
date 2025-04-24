@@ -41,7 +41,7 @@ print("-- Ícone de moedas clicado - redirecionando para página de moedas")
 print("-- Procurando botão para resgatar moedas")
 try:
     getCoins_btn = wait.until(
-        EC.presence_of_element_located((By.CLASS_NAME, 'aecoin-unchecked-3rjes'))
+        EC.presence_of_element_located((By.CSS_SELECTOR, '[class^="aecoin-unchecked"]'))
     )
     getCoins_btn.click()
     notify("Moedas recolhidas!!","Moedas recolhidas com sucesso!")
@@ -49,7 +49,7 @@ try:
     logging.info("Moedas recolhiedas com sucesso - Notificacao enviada")
     
 except:
-    if(EC.presence_of_element_located((By.CLASS_NAME,'aecoin-checked-3eXDN'))):
+    if(EC.presence_of_element_located((By.CSS_SELECTOR,'[class^="aecoin-checked"]'))):
         print("-- Moedas já recolhidas hoje")
         logging.info("Moedas já recolhidas hoje")
     else:
@@ -58,7 +58,7 @@ except:
         logging.error("Erro ao recolher moedas")
     time.sleep(2)
     print("-- Encerrando script")
-time.sleep(10)
+time.sleep(5)
 driver.quit()
 
 
