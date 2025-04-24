@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 import time
+from notifications import notify
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option("mobileEmulation", {
@@ -42,16 +43,18 @@ try:
         EC.presence_of_element_located((By.CLASS_NAME, 'aecoin-unchecked-3rjes'))
     )
     getCoins_btn.click()
+    notify("Moedas recolhidas!!","Moedas recolhidas com sucesso!")
     print("-- Moedas recolhidas com sucesso")
+    
 except:
     if(EC.presence_of_element_located((By.CLASS_NAME,'aecoin-checked-3eXDN'))):
         print("-- Moedas já recolhidas hoje")
     else:
         print("-- Erro ao recolher moedas")
+        notify("Error..","Erro ao tentar recolher moedas")
     time.sleep(2)
-    print("-- Encerrando script - digite algo para finalizar")
-
-input()
+    print("-- Encerrando script")
+time.sleep(10)
 driver.quit()
 
 
